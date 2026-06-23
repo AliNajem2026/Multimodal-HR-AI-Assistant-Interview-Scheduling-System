@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# Environment & secrets
+.env
+token.json
+credentials.json
+
+# Database (don't bake the local DB into the image)
+*.db
+*.sqlite3
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Docs / meta
+README.md
+CLAUDE.md
+*.md
+
+# Legacy
+backend/

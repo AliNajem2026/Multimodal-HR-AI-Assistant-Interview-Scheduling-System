@@ -1,0 +1,30 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+
+# Environment configurations and keys
+.env
+*.pem
+credentials.json
+token.json
+
+# Local Databases
+*.db
+*.sqlite3
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Type checker cache
+.mypy_cache/
+
+# Legacy scaffolding (superseded by app/)
+backend/

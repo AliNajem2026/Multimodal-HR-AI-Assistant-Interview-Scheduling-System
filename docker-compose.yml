@@ -1,0 +1,45 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      - DATABASE_URL=sqlite:////app/data/interview_scheduler.db
+    volumes:
+      - db_data:/app/data
+      # Mount Google Calendar credentials if you have them:
+      # - ./credentials.json:/app/credentials.json:ro
+      # - ./token.json:/app/token.json
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8501:8501"
+    environment:
+      - API_BASE=http://backend:8000/api/v1/schedule
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # Run the test suite inside the backend image (no ports, exits when done):
+  #   docker compose run --rm test
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ANTHROPIC_API_KEY=test-key-for-ci
+      - EMAIL_ENABLED=false
+      - DATABASE_URL=sqlite:///:memory:
+    command: ["pytest", "tests/", "-v", "--cov=app", "--cov-report=term-missing"]
+    profiles:
+      - test
+
+volumes:
+  db_data:
