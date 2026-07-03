@@ -3,6 +3,9 @@
 An end-to-end agentic application that automates technical interview scheduling using **Claude AI** (Anthropic) for natural-language parsing, **real-time calendar slot generation**, **Google Calendar** for event creation, and **Gmail** for automated candidate notifications.
 
 ---
+## How It Works
+
+(assets/HR_Animation.gif)
 
 ## What It Does
 
